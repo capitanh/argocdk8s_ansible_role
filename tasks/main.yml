@@ -1,0 +1,23 @@
+---
+- name: Install pip packages
+  pip:
+    name:
+      - kubernetes
+
+- name: Transfer argocd server config values file
+  template:
+    src: values.yml
+    dest: "/tmp/argocd_values.yml"
+    mode: 0644
+
+- name: Install argocd helm chart
+  kubernetes.core.helm:
+    release_name: "{{argocd_app_name}}"
+    chart_ref: argo-cd
+    chart_repo_url: https://argoproj.github.io/argo-helm
+    release_namespace: "{{argocd_namespace}}"
+    create_namespace: true
+    wait: yes
+    values_files:
+      - /tmp/argocd_values.yml
+  become_user: "{{admin_user}}"
