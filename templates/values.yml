@@ -2,12 +2,14 @@
 controller:
   args:
     appResyncPeriod: "30"
-
+dex:
+  enabled: true
 server:
   service:
     type: NodePort
     nodePortHttp: {{argocd_node_port}}
   config:
+    url: "https://localhost:8081"
     dex.config: |
       connectors:
       - type: ldap
@@ -16,6 +18,7 @@ server:
         config:
           host: 10.1.245.199:389
           insecureNoSSL: true
+          insecureSkipVerify: true
           bindDN: cn=admin,dc=mikasa,dc=net
           bindPW: secret
           usernamePrompt: Username
@@ -28,9 +31,31 @@ server:
           groupSearch:
             baseDN: ou=groups,dc=mikasa,dc=net
             userMatchers:
-            - userAttr: uid
+            - userAttr: DN
               groupAttr: member
             nameAttr: cn
+    rbacConfig:
+      policy.csv: |
+        p, role:org-admin, applications, *, */*, allow
+        p, role:org-admin, clusters, get, *, allow
+        p, role:org-admin, repositories, get, *, allow
+        p, role:org-admin, repositories, create, *, allow
+        p, role:org-admin, repositories, update, *, allow
+        p, role:org-admin, repositories, delete, *, allow
+        p, role:org-admin, logs, get, *, allow
+        p, role:org-admin, exec, create, */*, allow
+        g, ldap:administrators, role:org-admin
+        p, role:developers, applications, create, demo/*, allow
+        p, role:developers, applications, delete, demo/*, allow
+        p, role:developers, applications, get, demo/*, allow
+        p, role:developers, applications, override, demo/*, allow
+        p, role:developers, applications, sync, demo/*, allow
+        p, role:developers, applications, update, demo/*, allow
+        p, role:developers, logs, get, demo/*, allow
+        p, role:developers, exec, create, demo/*, allow
+        p, role:developers, projects, get, demo, allow
+        g, ldap:developers, role:developers
+      policy.default: role:readonly
 configs:
   secret:
     argocdServerAdminPassword: "{{argocd_admin_password | password_hash('blowfish')}}"
