@@ -16,7 +16,7 @@ server:
         id: ldap
         name: LDAP
         config:
-          host: 10.1.245.199:389
+          host: {{OPENLDAP_SERVICE_IP}}:389
           insecureNoSSL: true
           insecureSkipVerify: true
           bindDN: cn=admin,dc=mikasa,dc=net
