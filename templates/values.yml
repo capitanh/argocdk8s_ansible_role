@@ -15,7 +15,7 @@ server:
           name: LDAP
           config:
             host: 10.1.245.199:389
-            insecureNoSSL: true
+            insecureNoSSL: false
             bindDN: cn=admin,dc=mikasa,dc=net
             bindPW: secret
             usernamePrompt: SSO Username
