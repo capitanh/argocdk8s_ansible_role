@@ -35,7 +35,7 @@ server:
               groupAttr: member
             nameAttr: cn
     rbacConfig:
-    - policy.csv: |
+      policy.csv: |
         p, role:org-admin, applications, *, */*, allow
         p, role:org-admin, clusters, get, *, allow
         p, role:org-admin, repositories, get, *, allow
@@ -55,7 +55,6 @@ server:
         p, role:developers, exec, create, demo/*, allow
         p, role:developers, projects, get, demo, allow
         g, ldap:developers, role:developers
-      policy.default: role:readonly
 configs:
   secret:
     argocdServerAdminPassword: "{{argocd_admin_password | password_hash('blowfish')}}"
