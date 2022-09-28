@@ -18,7 +18,7 @@ server:
           insecureNoSSL: true
           bindDN: cn=admin,dc=mikasa,dc=net
           bindPW: secret
-          usernamePrompt: SSO Username
+          usernamePrompt: Username
           userSearch:
             baseDN: ou=people,dc=mikasa,dc=net
             username: uid
@@ -28,8 +28,8 @@ server:
           groupSearch:
             baseDN: ou=groups,dc=mikasa,dc=net
             userMatchers:
-            - userAttr: member
-              groupAttr: cn
+            - userAttr: uid
+              groupAttr: member
             nameAttr: cn
 configs:
   secret:
