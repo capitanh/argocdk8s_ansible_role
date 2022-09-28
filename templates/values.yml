@@ -33,7 +33,7 @@ server:
             userMatchers:
             - userAttr: DN
               groupAttr: member
-            nameAttr: cn
+            nameAttr: uid
   rbacConfig:
     policy.csv: |
       p, role:org-admin, applications, *, */*, allow
