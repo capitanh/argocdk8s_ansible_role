@@ -7,6 +7,30 @@ server:
   service:
     type: NodePort
     nodePortHttp: {{argocd_node_port}}
+  config:
+    dex.config: |
+      connectors:
+        - type: ldap
+          id: ldap
+          name: LDAP
+          config:
+            host: 10.1.245.199:389
+            insecureNoSSL: true
+            bindDN: cn=admin,dc=mikasa,dc=net
+            bindPW: secret
+            usernamePrompt: SSO Username
+            userSearch:
+              baseDN: ou=people,dc=mikasa,dc=net
+              username: uid
+              idAttr: uid
+              emailAttr: mail
+              nameAttr: cn
+            groupSearch:
+              baseDN: ou=groups,dc=mikasa,dc=net
+              userMatchers:
+              - userAttr: uid
+                groupAttr: uniqueMember
+              nameAttr: cn
 configs:
   secret:
     argocdServerAdminPassword: "{{argocd_admin_password | password_hash('blowfish')}}"
