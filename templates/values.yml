@@ -15,7 +15,7 @@ server:
           name: LDAP
           config:
             host: 10.1.245.199:389
-            insecureNoSSL: false
+            insecureNoSSL: true
             bindDN: cn=admin,dc=mikasa,dc=net
             bindPW: secret
             usernamePrompt: SSO Username
@@ -28,8 +28,8 @@ server:
             groupSearch:
               baseDN: ou=groups,dc=mikasa,dc=net
               userMatchers:
-              - userAttr: uid
-                groupAttr: uniqueMember
+              - userAttr: uniqueMember
+                groupAttr: cn
               nameAttr: cn
 configs:
   secret:
