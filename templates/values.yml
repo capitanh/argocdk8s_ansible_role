@@ -28,7 +28,7 @@ server:
           groupSearch:
             baseDN: ou=groups,dc=mikasa,dc=net
             userMatchers:
-            - userAttr: uniqueMember
+            - userAttr: member
               groupAttr: cn
             nameAttr: cn
 configs:
