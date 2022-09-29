@@ -13,27 +13,27 @@ server:
     dex.config: |
       connectors:
       - type: ldap
-        id: ldap
-        name: LDAP
+        id: ad
+        name: Active Directory
         config:
-          host: 10.1.245.199:389
+          host: da04.elconfidencial.int
           insecureNoSSL: true
           insecureSkipVerify: true
-          bindDN: cn=admin,dc=mikasa,dc=net
-          bindPW: secret
+          bindDN: CN=go-server,CN=Users,DC=ELCONFIDENCIAL,DC=INT
+          bindPW: CN=go-server,CN=Users,DC=ELCONFIDENCIAL,DC=INT
           usernamePrompt: Username
           userSearch:
-            baseDN: ou=people,dc=mikasa,dc=net
-            username: uid
-            idAttr: uid
+            baseDN: OU=Tecnico,OU=Usuarios,DC=ELCONFIDENCIAL,DC=INT
+            username: sAMAccountName
+            idAttr: distinguishedName
             emailAttr: mail
-            nameAttr: cn
+            nameAttr: displayName
           groupSearch:
-            baseDN: ou=groups,dc=mikasa,dc=net
+            baseDN: OU=Grupos,DC=elconfidencial,DC=int
             userMatchers:
-            - userAttr: DN
+            - userAttr: distinguishedName
               groupAttr: member
-            nameAttr: cn
+            nameAttr: name
   rbacConfig:
     policy.csv: |
       p, role:org-admin, applications, *, */*, allow
