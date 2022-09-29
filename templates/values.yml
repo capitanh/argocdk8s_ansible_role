@@ -17,7 +17,7 @@ server:
         name: Active Directory
         config:
           host: da04.elconfidencial.int:389
-          insecureNoSSL: true
+          insecureNoSSL: false
           insecureSkipVerify: true
           bindDN: CN=go-server,CN=Users,DC=ELCONFIDENCIAL,DC=INT
           bindPW: dwPpadL-2017
