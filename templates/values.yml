@@ -16,7 +16,7 @@ server:
         id: ad
         name: Active Directory
         config:
-          host: da04.elconfidencial.int
+          host: da04.elconfidencial.int:389
           insecureNoSSL: true
           insecureSkipVerify: true
           bindDN: CN=go-server,CN=Users,DC=ELCONFIDENCIAL,DC=INT
