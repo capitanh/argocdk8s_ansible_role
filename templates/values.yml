@@ -20,7 +20,7 @@ server:
           insecureNoSSL: true
           insecureSkipVerify: true
           bindDN: CN=go-server,CN=Users,DC=ELCONFIDENCIAL,DC=INT
-          bindPW: CN=go-server,CN=Users,DC=ELCONFIDENCIAL,DC=INT
+          bindPW: dwPpadL-2017
           usernamePrompt: Username
           userSearch:
             baseDN: OU=Tecnico,OU=Usuarios,DC=ELCONFIDENCIAL,DC=INT
