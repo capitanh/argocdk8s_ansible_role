@@ -23,6 +23,22 @@
   become_user: "{{admin_user}}"
 
 ###################################################################################
+# ArgoCD Auto Updater
+- name: Download argocd auto updater manifest
+  ansible.builtin.get_url:
+    url: https://raw.githubusercontent.com/argoproj-labs/argocd-image-updater/stable/manifests/install.yaml
+    dest: /tmp/argocd-autoupdater.yaml
+    mode: '0664'
+    validate_certs: no
+
+- name: Install argocd auto updater
+  kubernetes.core.k8s:
+    namespace: "{{argocd_namespace}}"
+    state: present
+    src: /tmp/argocd-autoupdater.yaml
+  become_user: "{{admin_user}}"
+
+###################################################################################
 # Export config values as facts for use in playbooks
 
 - name: Get ArgoCD service IP
