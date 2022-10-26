@@ -11,6 +11,7 @@ server:
 configs:
   cm:
     url: "https://localhost:8081"
+    admin.enabled: "false"
   params:
     secret:
       argocdServerAdminPassword: "{{argocd_admin_password | password_hash('blowfish')}}"
