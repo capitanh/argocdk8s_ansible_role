@@ -1,7 +1,7 @@
 # Custom config values, see https://github.com/argoproj/argo-helm/blob/master/charts/argo-cd/values.yaml for reference
 controller:
   args:
-    appResyncPeriod: "30"
+    appResyncPeriod: "5"
 dex:
   enabled: true
 server:
