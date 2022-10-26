@@ -9,6 +9,8 @@ server:
     type: NodePort
     nodePortHttp: {{argocd_node_port}}
 configs:
-  url: "https://localhost:8081"
-  secret:
-    argocdServerAdminPassword: "{{argocd_admin_password | password_hash('blowfish')}}"
+  cm:
+    url: "https://localhost:8081"
+  params:
+    secret:
+      argocdServerAdminPassword: "{{argocd_admin_password | password_hash('blowfish')}}"
