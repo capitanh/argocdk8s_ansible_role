@@ -49,7 +49,3 @@
     namespace: "{{argocd_namespace}}"
   become_user: "{{admin_user}}"
   register: L_ARGOCD_SERVICE_INFO
-
-- name: Export variables
-  set_fact:
-    ARGOCD_SERVICE_INFO: "{{L_ARGOCD_SERVICE_INFO}}"
