@@ -14,5 +14,5 @@ configs:
     admin.enabled: true
   params:
     secret:
-      argocdServerAdminPassword: "{{argocd_admin_password | password_hash('blowfish',ident='2a')}}"
+      argocdServerAdminPassword: "{{argocd_admin_password | password_hash('blowfish',ident='2a',rounds=10)}}"
       #argocdServerAdminPassword: "$2a$10$hJA2B9Z587M9ozhig9suYOgaKhog77W9rXsmjr0tdbuaEzyvTCEpW"
