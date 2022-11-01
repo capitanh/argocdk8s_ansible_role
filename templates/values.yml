@@ -14,5 +14,5 @@ configs:
     admin.enabled: true
   params:
     secret:
-      argocdServerAdminPassword: "{{argocd_admin_password | password_hash('bcrypt',ident='2a',rounds=10)}}"
+      argocdServerAdminPassword: "{{argocd_admin_password | password_hash('bcrypt',ident='2b',rounds=12)}}"
       #argocdServerAdminPassword: "$2a$10$hJA2B9Z587M9ozhig9suYOgaKhog77W9rXsmjr0tdbuaEzyvTCEpW"
