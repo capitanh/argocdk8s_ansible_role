@@ -2,8 +2,6 @@
 controller:
   args:
     appResyncPeriod: "5"
-dex:
-  enabled: true
 server:
   service:
     type: NodePort
@@ -11,7 +9,3 @@ server:
 configs:
   cm:
     url: "https://localhost:8081"
-  #  admin.enabled: true
-  #params:
-  #  secret:
-  #    argocdServerAdminPassword: "{{argocd_admin_password | password_hash('bcrypt',ident='2b',rounds=12)}}"
