@@ -37,15 +37,3 @@
     state: present
     src: /tmp/argocd-autoupdater.yaml
   become_user: "{{admin_user}}"
-
-###################################################################################
-# Export config values as facts for use in playbooks
-
-- name: Get ArgoCD service IP
-  kubernetes.core.k8s_info:
-    api_version: v1
-    kind: Service
-    name: argocd-server
-    namespace: "{{argocd_namespace}}"
-  become_user: "{{admin_user}}"
-  register: L_ARGOCD_SERVICE_INFO
