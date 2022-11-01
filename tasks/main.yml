@@ -53,4 +53,3 @@
 - name: Export variables
   set_fact:
     ARGOCD_SERVICE_INFO: "{{L_ARGOCD_SERVICE_INFO}}"
-    ARGOCD_ADMIN_PASSWORD: "{{argocd_admin_password}}"
