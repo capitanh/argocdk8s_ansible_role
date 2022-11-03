@@ -2,10 +2,17 @@
 controller:
   args:
     appResyncPeriod: "5"
+configs:
+  cm:
+    url: "https://localhost:8081"
 server:
   service:
     type: NodePort
     nodePortHttp: {{argocd_node_port}}
-configs:
-  cm:
-    url: "https://localhost:8081"
+notifications:
+  secret:
+    items:
+      slack-token: xoxb-15325716240-4216551218070-qgGXT53WqS2CvVP8BqLuQJXN
+  notifiers:
+      service.slack: |
+        token: $slack-token
