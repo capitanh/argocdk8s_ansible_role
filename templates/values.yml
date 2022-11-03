@@ -9,10 +9,3 @@ server:
   service:
     type: NodePort
     nodePortHttp: {{argocd_node_port}}
-notifications:
-  secret:
-    items:
-      slack-token: xoxb-15325716240-4216551218070-qgGXT53WqS2CvVP8BqLuQJXN
-  notifiers:
-      service.slack: |
-        token: $slack-token
