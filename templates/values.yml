@@ -1,11 +1,14 @@
 # Custom config values, see https://github.com/argoproj/argo-helm/blob/master/charts/argo-cd/values.yaml for reference
 controller:
   args:
-    appResyncPeriod: "5"
+    appResyncPeriod: 5
 configs:
   cm:
-    url: "https://localhost:8081"
+    url: https://localhost:8081
 server:
   service:
     type: NodePort
     nodePortHttp: {{argocd_node_port}}
+  certificateSecret:
+    key: /usr/share/ca-certificates/localhost/localhost.direct.key
+    crt: /usr/share/ca-certificates/localhost/localhost.direct.crt

@@ -4,6 +4,15 @@
     name:
       - kubernetes
 
+- name: Install localhost.direct ssl certificates
+  copỳ:
+    src: "{{item}}"
+    dest: /usr/share/ca-certificates/localhost/
+    mode: 0644
+  with_items:
+  - localhost.direct.crt
+  - localhost.direct.key
+
 - name: Transfer argocd server config values file
   template:
     src: values.yml
