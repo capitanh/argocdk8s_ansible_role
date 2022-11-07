@@ -5,7 +5,7 @@
       - kubernetes
 
 - name: Install localhost.direct ssl certificates
-  copỳ:
+  copy:
     src: "{{item}}"
     dest: /usr/share/ca-certificates/localhost/
     mode: 0644
