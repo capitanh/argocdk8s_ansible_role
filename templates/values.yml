@@ -5,6 +5,10 @@ controller:
 configs:
   cm:
     url: https://localhost:8081
+prometheus-node-exporter:
+  prometheus:
+    monitor:
+      enabled: true
 server:
   service:
     type: NodePort
@@ -47,3 +51,7 @@ server:
       additionalLabels: {}
       # -- Prometheus ServiceMonitor annotations
       annotations: {}
+prometheus-pushgateway:
+  serviceMonitor:
+    enabled: false
+    namespace: monitoring
