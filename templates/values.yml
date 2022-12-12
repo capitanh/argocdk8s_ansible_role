@@ -5,6 +5,7 @@ controller:
 configs:
   cm:
     url: https://localhost:8081
+    statusbadge.enabled: "true"
 prometheus-node-exporter:
   prometheus:
     monitor:
