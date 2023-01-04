@@ -55,7 +55,8 @@
     api_version: v1
     kind: Namespace
     state: present
-
+  become_user: "{{admin_user}}"
+  
 - name: Download install manifest
   ansible.builtin.get_url:
     url: https://github.com/argoproj/argo-rollouts/releases/latest/download/install.yaml
