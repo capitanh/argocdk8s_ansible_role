@@ -48,6 +48,29 @@
   become_user: "{{admin_user}}"
 
 ###################################################################################
+# Argo Rollouts
+- name: Create namespace
+  kubernetes.core.k8s:
+    name: argo-rollouts
+    api_version: v1
+    kind: Namespace
+    state: present
+
+- name: Download install manifest
+  ansible.builtin.get_url:
+    url: https://github.com/argoproj/argo-rollouts/releases/latest/download/install.yaml
+    dest: /tmp/argo-rollouts.yml
+    mode: '0664'
+    validate_certs: no
+
+- name: Install argo-rollouts
+  kubernetes.core.k8s:
+    namespace: argo-rollouts
+    state: present
+    src: /tmp/argo-rollouts.yml
+  become_user: "{{admin_user}}"
+
+###################################################################################
 # Notification templates and catalog
 - name: Download notification templates and catalog
   ansible.builtin.get_url:
@@ -56,9 +79,10 @@
     mode: '0664'
     validate_certs: no
 
-- name: Install argocd auto updater
+- name: Install notifications catalog
   kubernetes.core.k8s:
     namespace: "{{argocd_namespace}}"
     state: present
     src: /tmp/notifications_catalog.yaml
   become_user: "{{admin_user}}"
+
