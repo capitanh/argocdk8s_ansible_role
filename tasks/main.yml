@@ -71,6 +71,13 @@
     src: /tmp/argo-rollouts.yml
   become_user: "{{admin_user}}"
 
+- name: Download argo rollouts cli
+  ansible.builtin.get_url:
+    url: https://github.com/argoproj/argo-rollouts/releases/latest/download/kubectl-argo-rollouts-linux-amd64
+    dest: /usr/local/bin/kubectl-argo-rollouts-linux-amd64
+    mode: '0755'
+    validate_certs: no
+
 ###################################################################################
 # Notification templates and catalog
 - name: Download notification templates and catalog
