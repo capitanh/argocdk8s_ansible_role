@@ -1,15 +1,13 @@
 # Custom config values, see https://github.com/argoproj/argo-helm/blob/master/charts/argo-cd/values.yaml for reference
-controller:
-  args:
-    appResyncPeriod: 5
 configs:
   cm:
     url: https://localhost:8081
     statusbadge.enabled: "true"
-prometheus-node-exporter:
-  prometheus:
-    monitor:
-      enabled: true
+    timeout.reconciliation: 10s
+#prometheus-node-exporter:
+#  prometheus:
+#    monitor:
+#      enabled: true
 server:
   service:
     type: NodePort
