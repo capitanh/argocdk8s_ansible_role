@@ -57,7 +57,7 @@
     state: present
   become_user: "{{admin_user}}"
   
-- name: Download install manifest
+- name: Download installation manifest
   ansible.builtin.get_url:
     url: https://github.com/argoproj/argo-rollouts/releases/latest/download/install.yaml
     dest: /tmp/argo-rollouts.yml
@@ -78,14 +78,14 @@
     mode: 0755
     validate_certs: no
 
-- name: Download argo extension manifest
+- name: Download argo-rollouts extension manifest
   ansible.builtin.get_url:
-    url: https://raw.githubusercontent.com/argoproj-labs/rollout-extension/v0.2.1/manifests/install.yaml
+    url: https://raw.githubusercontent.com/argoproj-labs/rollout-extension/v0.3.0/manifests/install.yaml
     dest: /tmp/argo-rollouts-extension.yml
     mode: 0664
     validate_certs: no
 
-- name: Install argocd extension
+- name: Install argocd-rollout extension
   kubernetes.core.k8s:
     namespace: "{{argocd_namespace}}"
     state: present
