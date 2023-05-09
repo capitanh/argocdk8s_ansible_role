@@ -87,7 +87,7 @@
 
 - name: Install argocd extension
   kubernetes.core.k8s:
-    namespace: argo-rollouts
+    namespace: "{{argocd_namespace}}"
     state: present
     src: /tmp/argo-rollouts-extension.yml
   become_user: "{{admin_user}}"
