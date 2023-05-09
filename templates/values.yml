@@ -17,6 +17,19 @@ server:
     crt: /usr/share/ca-certificates/localhost/localhost.direct.crt
   extensions:
     enabled: true
+    image:
+      repository: "ghcr.io/argoproj-labs/argocd-extensions"
+      tag: "v0.2.1"
+      imagePullPolicy: ""
+    containerSecurityContext:
+      runAsNonRoot: true
+      readOnlyRootFilesystem: true
+      allowPrivilegeEscalation: false
+      seccompProfile:
+        type: RuntimeDefault
+      capabilities:
+        drop:
+        - ALL    
 #  metrics:
 #    # -- Deploy metrics service
 #    enabled: true
