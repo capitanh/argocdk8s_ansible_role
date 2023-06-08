@@ -15,13 +15,13 @@
 
 - name: Transfer argocd server config values file
   template:
-    src: values.yml
+    src: argocd-values.yml
     dest: "/tmp/argocd_values.yml"
     mode: 0644
 
 - name: Install argocd helm chart
   kubernetes.core.helm:
-    release_name: "{{argocd_app_name}}"
+    release_name: argocd
     chart_ref: argo-cd
     chart_repo_url: https://argoproj.github.io/argo-helm
     release_namespace: "{{argocd_namespace}}"
@@ -35,7 +35,7 @@
 # Argo Image Updater
 - name: Install argo image updater helm chart
   kubernetes.core.helm:
-    release_name: "{{argocd_app_name}}"
+    release_name: argocd-image-updater
     chart_ref: argocd-image-updater
     chart_repo_url: https://argoproj.github.io/argo-helm
     release_namespace: "{{argocd_namespace}}"
@@ -47,10 +47,10 @@
 # Argo Rollouts
 - name: Install argo rollouts helm chart
   kubernetes.core.helm:
-    release_name: "{{argocd_app_name}}"
+    release_name: argo-rollouts
     chart_ref: argo-rollouts
     chart_repo_url: https://argoproj.github.io/argo-helm
-    release_namespace: "{{argo-rollouts_namespace}}"
+    release_namespace: "{{argorollouts_namespace}}"
     create_namespace: true
     wait: yes
   become_user: "{{admin_user}}"  

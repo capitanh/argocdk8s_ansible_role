@@ -1,5 +1,4 @@
 ---
 argocd_node_port:        31405           # External port for k8s service visibility from outside the cluster
-argocd_app_name:         argo            # App name in cluster
 argocd_namespace:        argocd          # k8s cluster namespace to deploy pods under
-argo-rollouts_namespace: argo-rollouts   # Argo Rollouts Namespace
+argorollouts_namespace:  argo-rollouts    # Argo Rollouts Namespace
