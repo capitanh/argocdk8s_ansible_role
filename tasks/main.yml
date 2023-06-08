@@ -21,7 +21,7 @@
 
 - name: Install argocd helm chart
   kubernetes.core.helm:
-    release_name: argocd
+    release_name: argo
     chart_ref: argo-cd
     chart_repo_url: https://argoproj.github.io/argo-helm
     release_namespace: "{{argocd_namespace}}"
