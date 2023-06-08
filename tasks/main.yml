@@ -16,26 +16,26 @@
 - name: Transfer argocd server config values file
   template:
     src: argocd-values.yml
-    dest: "/tmp/argocd_values.yml"
+    dest: "/tmp/argocd-values.yml"
     mode: 0644
 
 - name: Install argocd helm chart
   kubernetes.core.helm:
-    #release_name: argo
+    release_name: "{{argo_release}}"
     chart_ref: argo-cd
     chart_repo_url: https://argoproj.github.io/argo-helm
     release_namespace: "{{argocd_namespace}}"
     create_namespace: true
     wait: yes
     values_files:
-      - /tmp/argocd_values.yml
+      - /tmp/argocd-values.yml
   become_user: "{{admin_user}}"
 
 ###################################################################################
 # Argo Image Updater
 - name: Install argo image updater helm chart
   kubernetes.core.helm:
-    #release_name: argocd-image-updater
+    release_name: "{{argo_release}}"
     chart_ref: argocd-image-updater
     chart_repo_url: https://argoproj.github.io/argo-helm
     release_namespace: "{{argocd_namespace}}"
@@ -45,14 +45,22 @@
 
 ###################################################################################
 # Argo Rollouts
+- name: Transfer argo rollouts config values file
+  template:
+    src: rollouts-values.yml
+    dest: "/tmp/rollouts-values.yml"
+    mode: 0644
+
 - name: Install argo rollouts helm chart
   kubernetes.core.helm:
-    #release_name: argo-rollouts
+    release_name: "{{argo_release}}"
     chart_ref: argo-rollouts
     chart_repo_url: https://argoproj.github.io/argo-helm
     release_namespace: "{{argorollouts_namespace}}"
     create_namespace: true
     wait: yes
+    values_files:
+      - /tmp/rollouts-values.yml    
   become_user: "{{admin_user}}"  
 
 - name: Download argo rollouts cli
@@ -75,7 +83,6 @@
     state: present
     src: /tmp/argo-rollouts-extension.yml
   become_user: "{{admin_user}}"
-
 
 ###################################################################################
 # Notification templates and catalog
