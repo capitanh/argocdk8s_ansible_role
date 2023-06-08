@@ -39,7 +39,7 @@
     chart_ref: argocd-image-updater
     chart_repo_url: https://argoproj.github.io/argo-helm
     release_namespace: "{{argocd_namespace}}"
-    create_namespace: true
+    create_namespace: false
     wait: yes
   become_user: "{{admin_user}}"
 
