@@ -16,7 +16,7 @@
 - name: Transfer argocd server config values file
   template:
     src: argocd-values.yml
-    dest: "/tmp/argocd-values.yml"
+    dest: /tmp/argocd-values.yml
     mode: 0644
 
 - name: Install argocd helm chart
@@ -53,7 +53,7 @@
 
 - name: Install argo rollouts helm chart
   kubernetes.core.helm:
-    release_name: "{{argo_release}}"
+    release_name: argo
     chart_ref: argo-rollouts
     chart_repo_url: https://argoproj.github.io/argo-helm
     release_namespace: "{{argorollouts_namespace}}"
