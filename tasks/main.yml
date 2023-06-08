@@ -32,44 +32,28 @@
   become_user: "{{admin_user}}"
 
 ###################################################################################
-# ArgoCD Auto Updater
-- name: Download argocd auto updater manifest
-  ansible.builtin.get_url:
-    url: https://raw.githubusercontent.com/argoproj-labs/argocd-image-updater/stable/manifests/install.yaml
-    dest: /tmp/argocd-autoupdater.yaml
-    mode: '0664'
-    validate_certs: no
-
-- name: Install argocd auto updater
-  kubernetes.core.k8s:
-    namespace: "{{argocd_namespace}}"
-    state: present
-    src: /tmp/argocd-autoupdater.yaml
-  become_user: "{{admin_user}}"
+# Argo Image Updater
+- name: Install argo image updater helm chart
+  kubernetes.core.helm:
+    release_name: "{{argocd_app_name}}"
+    chart_ref: argocd-image-updater
+    chart_repo_url: https://argoproj.github.io/argo-helm
+    release_namespace: "{{argocd_namespace}}"
+    create_namespace: true
+    wait: yes
+  become_user: "{{admin_user}}"  
 
 ###################################################################################
 # Argo Rollouts
-- name: Create namespace
-  kubernetes.core.k8s:
-    name: argo-rollouts
-    api_version: v1
-    kind: Namespace
-    state: present
-  become_user: "{{admin_user}}"
-  
-- name: Download installation manifest
-  ansible.builtin.get_url:
-    url: https://github.com/argoproj/argo-rollouts/releases/latest/download/install.yaml
-    dest: /tmp/argo-rollouts.yml
-    mode: 0664
-    validate_certs: no
-
-- name: Install argo-rollouts
-  kubernetes.core.k8s:
-    namespace: argo-rollouts
-    state: present
-    src: /tmp/argo-rollouts.yml
-  become_user: "{{admin_user}}"
+- name: Install argo rollouts helm chart
+  kubernetes.core.helm:
+    release_name: "{{argocd_app_name}}"
+    chart_ref: argo-rollouts
+    chart_repo_url: https://argoproj.github.io/argo-helm
+    release_namespace: "{{argo-rollouts_namespace}}"
+    create_namespace: true
+    wait: yes
+  become_user: "{{admin_user}}"  
 
 - name: Download argo rollouts cli
   ansible.builtin.get_url:
