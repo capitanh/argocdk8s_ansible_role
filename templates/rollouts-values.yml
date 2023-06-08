@@ -1,4 +1,5 @@
 dashboard:
+  enabled: true
   service:
     type: NodePort
     # -- Service port name
