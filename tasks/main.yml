@@ -41,7 +41,7 @@
     release_namespace: "{{argocd_namespace}}"
     create_namespace: true
     wait: yes
-  become_user: "{{admin_user}}"  
+  become_user: "{{admin_user}}"
 
 ###################################################################################
 # Argo Rollouts
@@ -60,8 +60,8 @@
     create_namespace: true
     wait: yes
     values_files:
-      - /tmp/rollouts-values.yml    
-  become_user: "{{admin_user}}"  
+      - /tmp/rollouts-values.yml
+  become_user: "{{admin_user}}"
 
 - name: Download argo rollouts cli
   ansible.builtin.get_url:
