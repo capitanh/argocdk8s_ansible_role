@@ -21,11 +21,11 @@
 
 - name: Install argocd helm chart
   kubernetes.core.helm:
-    release_name: "{{argo_release}}"
+    release_name: argocd
     chart_ref: argo-cd
     chart_repo_url: https://argoproj.github.io/argo-helm
     release_namespace: "{{argocd_namespace}}"
-    create_namespace: true
+    create_namespace: yes
     wait: yes
     values_files:
       - /tmp/argocd-values.yml
@@ -35,11 +35,11 @@
 # Argo Image Updater
 - name: Install argo image updater helm chart
   kubernetes.core.helm:
-    release_name: "{{argo_release}}"
+    release_name: argocd-image-updater
     chart_ref: argocd-image-updater
     chart_repo_url: https://argoproj.github.io/argo-helm
     release_namespace: "{{argocd_namespace}}"
-    create_namespace: false
+    create_namespace: yes
     wait: yes
   become_user: "{{admin_user}}"
 
@@ -53,11 +53,11 @@
 
 - name: Install argo rollouts helm chart
   kubernetes.core.helm:
-    release_name: argo
+    release_name: argo-rollouts
     chart_ref: argo-rollouts
     chart_repo_url: https://argoproj.github.io/argo-helm
     release_namespace: "{{argorollouts_namespace}}"
-    create_namespace: true
+    create_namespace: yes
     wait: yes
     values_files:
       - /tmp/rollouts-values.yml
