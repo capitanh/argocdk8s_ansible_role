@@ -35,7 +35,7 @@
 # Argo Image Updater
 - name: Install argo image updater helm chart
   kubernetes.core.helm:
-    release_name: argocd-image-updater
+    release_name: argo
     chart_ref: argocd-image-updater
     chart_repo_url: https://argoproj.github.io/argo-helm
     release_namespace: "{{argocd_namespace}}"
