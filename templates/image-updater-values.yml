@@ -1,5 +1,5 @@
 # Ref: https://github.com/argoproj/argo-helm/blob/main/charts/argocd-image-updater/values.yaml
-extraEnv: []
+extraEnv:
   - name: AWS_DEFAULT_REGION
     value: "eu-west-1"
   - name: AWS_ACCESS_KEY_ID
