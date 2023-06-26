@@ -33,6 +33,12 @@
 
 ###################################################################################
 # Argo Image Updater
+- name: Transfer image updater config values file
+  template:
+    src: image-updater-values.yml
+    dest: /tmp/image-updater-values.yml
+    mode: 0644
+
 - name: Install argo image updater helm chart
   kubernetes.core.helm:
     release_name: argo
@@ -41,6 +47,8 @@
     release_namespace: "{{argocd_namespace}}"
     create_namespace: yes
     wait: yes
+    values_files:
+      - /tmp/image-updater-values.yml
   become_user: "{{admin_user}}"
 
 ###################################################################################
@@ -48,7 +56,7 @@
 - name: Transfer argo rollouts config values file
   template:
     src: rollouts-values.yml
-    dest: "/tmp/rollouts-values.yml"
+    dest: /tmp/rollouts-values.yml
     mode: 0644
 
 - name: Install argo rollouts helm chart
