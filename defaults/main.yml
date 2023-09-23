@@ -4,3 +4,4 @@ argocd_namespace:        argocd             # k8s cluster namespace to deploy po
 argo_release:            argocd             # Helm chart release name
 argorollouts_namespace:  argo-rollouts      # Argo Rollouts Namespace
 argocd_host:             localhost          # Ingress hostname
+argocd_port:             80                 # Ingress default port
