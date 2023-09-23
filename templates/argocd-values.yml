@@ -1,7 +1,8 @@
 # Custom config values, see https://github.com/argoproj/argo-helm/blob/master/charts/argo-cd/values.yaml for reference
 configs:
   cm:
-    url: https://localhost:8081
+    #url: https://localhost:8081
+    url: http://{{argocd_host}}:80
     statusbadge.enabled: "true"
     timeout.reconciliation: 10s
 #prometheus-node-exporter:
@@ -9,9 +10,22 @@ configs:
 #    monitor:
 #      enabled: true
 server:
-  service:
-    type: NodePort
-    nodePortHttp: {{argocd_node_port}}
+  #service:
+  #  type: NodePort
+  #  nodePortHttp: {{argocd_node_port}}
+  ingress:
+    enabled: true
+    annotations: {}
+    labels: {}
+    ingressClassName: alb
+    hosts:
+     - {{argocd_host}}
+    paths:
+      - /
+    pathType: Prefix
+    extraPaths: []
+    tls: []
+    https: false
   certificateSecret:
     key: /usr/share/ca-certificates/localhost/localhost.direct.key
     crt: /usr/share/ca-certificates/localhost/localhost.direct.crt
@@ -29,7 +43,7 @@ server:
         type: RuntimeDefault
       capabilities:
         drop:
-        - ALL    
+        - ALL
 #  metrics:
 #    # -- Deploy metrics service
 #    enabled: true
