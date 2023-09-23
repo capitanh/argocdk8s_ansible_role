@@ -4,7 +4,7 @@ configs:
     server.insecure: true
   cm:
     #url: https://localhost:8081
-    url: http://{{argocd_host}}:80
+    url: http://{{argocd_host}}:{{argocd_port}}
     statusbadge.enabled: "true"
     timeout.reconciliation: 10s
 #prometheus-node-exporter:
