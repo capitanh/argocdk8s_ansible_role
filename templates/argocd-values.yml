@@ -17,7 +17,6 @@ server:
     enabled: true
     annotations: {}
     labels: {}
-    ingressClassName: alb
     hosts:
      - {{argocd_host}}
     paths:
