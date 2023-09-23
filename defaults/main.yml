@@ -8,4 +8,4 @@ argocd_port:             80                 # Ingress default port
 
 #ArgoRollouts
 argorollouts_namespace:  argo-rollouts      # Argo Rollouts Namespace
-argorollouts_host:       argorollouts       # Argo Rollouts Ingress Hostname
+argorollouts_host:       localhost       # Argo Rollouts Ingress Hostname
