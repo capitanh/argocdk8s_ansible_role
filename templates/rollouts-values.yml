@@ -1,12 +1,10 @@
 dashboard:
   enabled: true
   service:
-    type: NodePort
-    # -- Service port name
+    type: ClusterIP
     portName: dashboard
-    # -- Service port
-    port: 3100
-    # -- Service target port
-    targetPort: 3100
-    # -- (int) Service nodePort
-    nodePort: 30100
+  ingress:
+    enabled: true
+    ingressClassName: "public"
+    hosts:
+     - {{argorollouts_host}}
