@@ -3,7 +3,6 @@ configs:
   params:
     server.insecure: true
   cm:
-    #url: https://localhost:8081
     url: http://{{argocd_host}}:{{argocd_port}}
     statusbadge.enabled: "true"
     timeout.reconciliation: 10s
@@ -12,9 +11,6 @@ configs:
 #    monitor:
 #      enabled: true
 server:
-  #service:
-  #  type: NodePort
-  #  nodePortHttp: {{argocd_node_port}}
   ingress:
     enabled: true
     annotations: {}

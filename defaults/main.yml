@@ -1,6 +1,5 @@
 ---
 # ArgoCD Server
-argocd_node_port:        31405              # External port for k8s service visibility from outside the cluster
 argocd_namespace:        argocd             # k8s cluster namespace to deploy pods under
 argo_release:            argocd             # Helm chart release name
 argocd_host:             localhost          # Ingress hostname
