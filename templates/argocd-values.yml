@@ -30,9 +30,13 @@ server:
   extensions:
     enabled: true
     image:
-      repository: "ghcr.io/argoproj-labs/argocd-extensions"
-      tag: "v0.2.1"
-      imagePullPolicy: ""
+      repository: "quay.io/argoprojlabs/argocd-extension-installer"
+      tag: "v0.0.1"
+    extensionList: []
+      - name: rollout-extension
+        env:
+          - name: EXTENSION_URL
+            value: https://github.com/argoproj-labs/rollout-extension/releases/download/v0.3.4/extension.tar
     containerSecurityContext:
       runAsNonRoot: true
       readOnlyRootFilesystem: true

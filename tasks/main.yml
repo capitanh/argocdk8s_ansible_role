@@ -78,19 +78,19 @@
     mode: 0755
     validate_certs: no
 
-- name: Download argo-rollouts extension manifest
-  ansible.builtin.get_url:
-    url: https://raw.githubusercontent.com/argoproj-labs/rollout-extension/v0.3.0/manifests/install.yaml
-    dest: /tmp/argo-rollouts-extension.yml
-    mode: 0664
-    validate_certs: no
-
-- name: Install argocd-rollout extension
-  kubernetes.core.k8s:
-    namespace: "{{argocd_namespace}}"
-    state: present
-    src: /tmp/argo-rollouts-extension.yml
-  become_user: "{{admin_user}}"
+#- name: Download argo-rollouts extension manifest
+#  ansible.builtin.get_url:
+#    url: https://raw.githubusercontent.com/argoproj-labs/rollout-extension/v0.3.0/manifests/install.yaml
+#    dest: /tmp/argo-rollouts-extension.yml
+#    mode: 0664
+#    validate_certs: no
+#
+#- name: Install argocd-rollout extension
+#  kubernetes.core.k8s:
+#    namespace: "{{argocd_namespace}}"
+#    state: present
+#    src: /tmp/argo-rollouts-extension.yml
+#  become_user: "{{admin_user}}"
 
 ###################################################################################
 # Notification templates and catalog
