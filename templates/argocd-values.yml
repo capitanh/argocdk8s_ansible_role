@@ -32,7 +32,7 @@ server:
     image:
       repository: "quay.io/argoprojlabs/argocd-extension-installer"
       tag: "v0.0.1"
-    extensionList: []
+    extensionList:
       - name: rollout-extension
         env:
           - name: EXTENSION_URL
