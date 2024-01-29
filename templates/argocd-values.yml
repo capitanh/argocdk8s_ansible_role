@@ -27,6 +27,13 @@ server:
   certificateSecret:
     key: /usr/share/ca-certificates/localhost/localhost.direct.key
     crt: /usr/share/ca-certificates/localhost/localhost.direct.crt
+  env:
+    - name: AWS_DEFAULT_REGION
+      value: "{{aws_default_region}}"
+    - name: AWS_ACCESS_KEY_ID
+      value: "{{aws_access_key_id}}"
+    - name: AWS_SECRET_ACCESS_KEY
+      value: "{{aws_secret_access_key}}"    
   extensions:
     enabled: true
     image:
