@@ -24,6 +24,13 @@ server:
     extraPaths: []
     tls: []
     https: false
+  initContainers: []
+    - name: download-aws-cli
+      image: amazon/aws-cli
+      command: aws --versin
+      #volumeMounts:
+      #  - mountPath: /custom-tools
+      #    name: custom-tools    
   certificateSecret:
     key: /usr/share/ca-certificates/localhost/localhost.direct.key
     crt: /usr/share/ca-certificates/localhost/localhost.direct.crt
