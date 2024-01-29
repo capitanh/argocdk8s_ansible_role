@@ -27,7 +27,8 @@ server:
   initContainers:
     - name: download-aws-cli
       image: amazon/aws-cli
-      command: aws --versin
+      command:
+        - aws --versin
       #volumeMounts:
       #  - mountPath: /custom-tools
       #    name: custom-tools    
