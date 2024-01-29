@@ -24,7 +24,7 @@ server:
     extraPaths: []
     tls: []
     https: false
-  initContainers: []
+  initContainers:
     - name: download-aws-cli
       image: amazon/aws-cli
       command: aws --versin
