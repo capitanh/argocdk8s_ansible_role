@@ -15,17 +15,7 @@ configs:
 server:
   ingress:
     enabled: true
-    #annotations: {}
-    #labels: {}
     ingressClassName: "public"
-    #hosts:
-    # - {{argocd_host}}
-    #paths:
-    #  - /
-    #pathType: Prefix
-    #extraPaths: []
-    #tls: []
-    #https: false
   certificateSecret:
     key: /usr/share/ca-certificates/localhost/localhost.direct.key
     crt: /usr/share/ca-certificates/localhost/localhost.direct.crt
