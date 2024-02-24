@@ -1,4 +1,6 @@
 # Custom config values, see https://github.com/argoproj/argo-helm/blob/master/charts/argo-cd/values.yaml for reference
+global:
+  domain: {{argocd_host}}
 configs:
   params:
     server.insecure: true
@@ -13,17 +15,17 @@ configs:
 server:
   ingress:
     enabled: true
-    annotations: {}
-    labels: {}
+    #annotations: {}
+    #labels: {}
     ingressClassName: "public"
-    hosts:
-     - {{argocd_host}}
-    paths:
-      - /
-    pathType: Prefix
-    extraPaths: []
-    tls: []
-    https: false
+    #hosts:
+    # - {{argocd_host}}
+    #paths:
+    #  - /
+    #pathType: Prefix
+    #extraPaths: []
+    #tls: []
+    #https: false
   certificateSecret:
     key: /usr/share/ca-certificates/localhost/localhost.direct.key
     crt: /usr/share/ca-certificates/localhost/localhost.direct.crt
