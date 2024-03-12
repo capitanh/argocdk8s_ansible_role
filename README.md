@@ -1,6 +1,6 @@
 ArgoCD on Kubernetes Ansible Role
 ===============================
-This role will deploy the official ArgoCD helm chart onto a k8s cluster (tested only in micrik8s, due to specific storage class)
+This role will deploy the official ArgoCD helm chart onto a k8s cluster (tested only in microk8s, due to specific storage class)
 
 Requirements
 ------------
