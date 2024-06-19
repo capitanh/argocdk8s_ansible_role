@@ -6,7 +6,7 @@ configs:
     server.insecure: true
   cm:
     url: http://{{argocd_host}}:{{argocd_port}}
-    statusbadge.enabled: "true"
+    statusbadge.enabled: true
     timeout.reconciliation: 10s
     application.resourceTrackingMethod: annotation
 #prometheus-node-exporter:
@@ -16,7 +16,7 @@ configs:
 server:
   ingress:
     enabled: true
-    ingressClassName: "public"
+    ingressClassName: public
   certificateSecret:
     key: /usr/share/ca-certificates/localhost/localhost.direct.key
     crt: /usr/share/ca-certificates/localhost/localhost.direct.crt
