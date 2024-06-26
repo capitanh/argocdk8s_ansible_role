@@ -5,6 +5,9 @@ argo_release:            argocd             # Helm chart release name
 argocd_host:             localhost          # Ingress hostname
 argocd_port:             80                 # Ingress default port
 
+# Argo Workflows
+argoworkflows_host:      argoworkflows
+
 #ArgoRollouts
 argorollouts_namespace:  argo-rollouts      # Argo Rollouts Namespace
 argorollouts_host:       localhost       # Argo Rollouts Ingress Hostname
