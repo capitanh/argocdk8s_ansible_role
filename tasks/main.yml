@@ -1,8 +1,8 @@
 ---
-- name: Install pip packages
-  pip:
+- name: Install python k8s api
+  ansible.builtin.apt:
     name:
-      - kubernetes
+      - python3-kubernetes
 
 - name: Install localhost.direct ssl certificates
   copy:
