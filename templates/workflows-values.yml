@@ -64,6 +64,8 @@ server:
   ## See the following documentation for more details on secure mode:
   ## https://argo-workflows.readthedocs.io/en/stable/tls/
   secure: false
+  authModes:
+    - server
   ingress:
     enabled: true
     ingressClassName: public
