@@ -58,8 +58,8 @@ controller:
 server:
   enabled: true
   serviceAccount:
-    create: true
-    name: ""
+    create: false
+    name: "argocd-server"
   # -- Run the argo server in "secure" mode. Configure this value instead of `--secure` in extraArgs.
   ## See the following documentation for more details on secure mode:
   ## https://argo-workflows.readthedocs.io/en/stable/tls/
