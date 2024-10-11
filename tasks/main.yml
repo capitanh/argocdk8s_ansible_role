@@ -98,6 +98,13 @@
       - /tmp/workflows-values.yml
   become_user: "{{admin_user}}"    
 
+- name: Download argo workflows cli
+  ansible.builtin.get_url:
+    url: https://github.com/argoproj/argo-workflows/releases/latest/download/argo-linux-amd64.gz
+    dest: /usr/local/bin/argo
+    mode: 0755
+    validate_certs: no
+
 ###################################################################################
 # Notification templates and catalog
 - name: Download notification templates and catalog
