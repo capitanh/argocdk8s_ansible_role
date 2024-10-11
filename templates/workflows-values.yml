@@ -46,11 +46,6 @@ controller:
   #     name: argo-mysql-config
   #     key: password
 
-  serviceAccount:
-    create: true
-    name: "argo-workflow"
-  rbac:
-    create: true
   # -- Specify all namespaces where this workflow controller instance will manage
   # workflows. This controls where the service account and RBAC resources will
   # be created. Only valid when singleNamespace is false.
