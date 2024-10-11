@@ -101,6 +101,7 @@
 - name: Download argo workflows cli
   ansible.builtin.unarchive:
     src: https://github.com/argoproj/argo-workflows/releases/latest/download/argo-linux-amd64.gz
+    remote_src: yes
     dest: /usr/local/bin/argo
     mode: 0755
     validate_certs: no
