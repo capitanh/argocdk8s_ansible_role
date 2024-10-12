@@ -17,9 +17,9 @@ controller:
     name: "workflow-controller"
   rbac:
     create: true
-workflowDefaults:
-  spec:
-    serviceAccountName: argo-workflow
+  workflowDefaults:
+    spec:
+      serviceAccountName: argo-workflow
 server:
   authModes:
     - server
