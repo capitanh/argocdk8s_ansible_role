@@ -1,7 +1,17 @@
 # Ref: https://github.com/argoproj/argo-helm/blob/main/charts/argo-workflows/values.yaml
+workflow:
+  serviceAccount:
+    create: true
+    name: "argo-workflow"
+  rbac:
+    create: true
 controller:
   workflowNamespaces:
     - {{argocd_namespace}}
+    - default
+    - development
+    - staging
+    - production
 server:
   authModes:
     - server
