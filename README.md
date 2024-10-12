@@ -1,19 +1,32 @@
 ArgoCD on Kubernetes Ansible Role
 ===============================
-This role will deploy the official ArgoCD helm chart onto a k8s cluster (tested only in microk8s, due to specific storage class)
+This role will deploy the official ArgoCD helm chart onto a k8s cluster (tested only in microk8s, due to specific storage class). Also, the following Argo apps will be installed:
+* ArgoCD Image Updater
+* Argo Rollouts
+* Argo Workflows
+* Notification templates and catalog
 
 Requirements
 ------------
-A functioning nicrok8s installation. You can use the following role to boot up such a cluster:
+A functioning microk8s installation. You can use the following role to boot up such a cluster:
 https://github.com/capitanh/microk8s_ansible_role
 
 Role Variables
 --------------
 Tne variables required by this role are:
 ```yaml
-argocd_node_port:      31405           # External port for k8s service visibility from outside the cluster
-argocd_app_name:       argocd          # App name in cluster
-argocd_namespace:      argocd          # k8s cluster namespace to deploy pods under
+# ArgoCD
+argocd_namespace:        argocd             # k8s cluster namespace to deploy pods under
+argo_release:            argocd             # Helm chart release name
+argocd_host:             localhost          # Ingress hostname
+argocd_port:             80                 # Ingress default port
+
+# Argo Workflows
+argoworkflows_host:      argoworkflows      # Argo Server (Worflows UI) hostname
+
+#Argo Rollouts
+argorollouts_namespace:  argo-rollouts      # Argo Rollouts Namespace
+argorollouts_host:       localhost          # Argo Rollouts Ingress Hostname
 ```
 
 Dependencies
