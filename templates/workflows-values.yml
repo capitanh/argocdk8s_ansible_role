@@ -12,6 +12,11 @@ controller:
     - development
     - staging
     - production
+  serviceAccount:
+    create: true
+    name: "workflow-controller"
+  rbac:
+    create: true
 server:
   authModes:
     - server
