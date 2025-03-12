@@ -98,6 +98,26 @@
       - /tmp/workflows-values.yml
   become_user: "{{admin_user}}"    
 
+###################################################################################
+# Kargo
+- name: Transfer Kargo config values file
+  template:
+    src: kargo-values.yml
+    dest: /tmp/kargo-values.yml
+    mode: 0644
+
+- name: Install Kargo helm chart
+  kubernetes.core.helm:
+    release_name: kargo
+    chart_ref: kargo
+    chart_repo_url: oci://ghcr.io/akuity/kargo-charts/kargo
+    release_namespace: "{{kargo_namespace}}"
+    create_namespace: yes
+    wait: yes
+    values_files:
+      - /tmp/kargo-values.yml
+  become_user: "{{admin_user}}"    
+
 #- name: Download argo workflows cli
 #  ansible.builtin.unarchive:
 #    src: https://github.com/argoproj/argo-workflows/releases/latest/download/argo-linux-amd64.gz

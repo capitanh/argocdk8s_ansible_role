@@ -1,0 +1,18 @@
+api:
+  host: {{kargo_host}}
+  ingress:
+    enabled: true
+    ingressClassName: public
+    tls:
+      enabled: false
+  adminAccount:
+    enabled: true
+    passwordHash: {{kargo_admin_password | password_hash(hashtype="bcrypt")}}
+  argocd:
+    urls:
+       "": http://argocd:8080/
+controller:
+  ## All settings relating to the Argo CD control plane this controller might
+  ## integrate with.
+  argocd:
+    namespace: {{argocd_namespace}}

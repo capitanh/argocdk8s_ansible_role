@@ -1,13 +1,18 @@
 ---
 # ArgoCD Server
-argocd_namespace:        argocd             # k8s cluster namespace to deploy pods under
-argo_release:            argocd             # Helm chart release name
-argocd_host:             localhost          # Ingress hostname
-argocd_port:             80                 # Ingress default port
+argocd_namespace:         argocd             # k8s cluster namespace to deploy pods under
+argo_release:             argocd             # Helm chart release name
+argocd_host:              localhost          # Ingress hostname
+argocd_port:              80                 # Ingress default port
+  
+# Argo Workflows  
+argoworkflows_host:       argoworkflows
+  
+#ArgoRollouts 
+argorollouts_namespace:   argo-rollouts      # Argo Rollouts Namespace
+argorollouts_host:        localhost       # Argo Rollouts Ingress Hostname
 
-# Argo Workflows
-argoworkflows_host:      argoworkflows
-
-#ArgoRollouts
-argorollouts_namespace:  argo-rollouts      # Argo Rollouts Namespace
-argorollouts_host:       localhost       # Argo Rollouts Ingress Hostname
+#Kargo
+kargo_namespace:          kargo
+kargo_host:               kargo
+kargo_admin_password:     admin
