@@ -15,7 +15,5 @@ api:
     urls:
        "": http://argocd:8080/
 controller:
-  ## All settings relating to the Argo CD control plane this controller might
-  ## integrate with.
   argocd:
     namespace: {{argocd_namespace}}
