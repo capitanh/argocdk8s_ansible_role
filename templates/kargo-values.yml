@@ -8,6 +8,7 @@ api:
   adminAccount:
     enabled: true
     passwordHash: {{kargo_admin_password | password_hash(hashtype="bcrypt")}}
+    tokenSigningKey: {{kargo_token_signing_key}}
   argocd:
     urls:
        "": http://argocd:8080/
