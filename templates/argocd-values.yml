@@ -9,6 +9,17 @@ configs:
     statusbadge.enabled: true
     timeout.reconciliation: 10s
     application.resourceTrackingMethod: annotation
+    resource.customizations: |
+      networking.k8s.io/Ingress:
+        ignoreDifferences: |
+          jsonPointers:
+          - /status
+      networking.k8s.io/Ingress:
+        health.lua: |
+          hs = {}
+          hs.status = "Healthy"
+          hs.message = "Not verifying for Ingress"
+          return hs
 #prometheus-node-exporter:
 #  prometheus:
 #    monitor:
