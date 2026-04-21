@@ -27,7 +27,7 @@ configs:
 server:
   ingress:
     enabled: true
-    ingressClassName: public
+    ingressClassName: traefik
   certificateSecret:
     key: /usr/share/ca-certificates/localhost/localhost.direct.key
     crt: /usr/share/ca-certificates/localhost/localhost.direct.crt
