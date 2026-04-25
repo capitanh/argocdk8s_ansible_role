@@ -35,7 +35,7 @@
   ansible.builtin.import_tasks: rollouts.yml
 - name : Install ArgoCD Image Updater
   ansible.builtin.import_tasks: imageupdater.yml
-- mame: Install Argo Workflows
+- name: Install Argo Workflows
   ansible.builtin.import_tasks: workflows.yml
 #- name: Install kargo
 #  ansible.builtin.import_tasks: kargo.yml
