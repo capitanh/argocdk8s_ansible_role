@@ -31,106 +31,13 @@
       - /tmp/argocd-values.yml
   become_user: "{{admin_user}}"
 
-###################################################################################
-# Argo Image Updater
-- name: Transfer image updater config values file
-  template:
-    src: image-updater-values.yml
-    dest: /tmp/image-updater-values.yml
-    mode: 0644
-
-- name: Install argo image updater helm chart
-  kubernetes.core.helm:
-    release_name: argo
-    chart_ref: argocd-image-updater
-    chart_repo_url: https://argoproj.github.io/argo-helm
-    release_namespace: "{{argocd_namespace}}"
-    create_namespace: yes
-    wait: yes
-    values_files:
-      - /tmp/image-updater-values.yml
-  become_user: "{{admin_user}}"
-
-###################################################################################
-# Argo Rollouts
-- name: Transfer argo rollouts config values file
-  template:
-    src: rollouts-values.yml
-    dest: /tmp/rollouts-values.yml
-    mode: 0644
-
-- name: Install argo rollouts helm chart
-  kubernetes.core.helm:
-    release_name: argo-rollouts
-    chart_ref: argo-rollouts
-    chart_repo_url: https://argoproj.github.io/argo-helm
-    release_namespace: "{{argorollouts_namespace}}"
-    create_namespace: yes
-    wait: yes
-    values_files:
-      - /tmp/rollouts-values.yml
-  become_user: "{{admin_user}}"
-
-- name: Download argo rollouts cli
-  ansible.builtin.get_url:
-    url: https://github.com/argoproj/argo-rollouts/releases/latest/download/kubectl-argo-rollouts-linux-amd64
-    dest: /usr/local/bin/kubectl-argo-rollouts-linux-amd64
-    mode: 0755
-    validate_certs: no
-
-###################################################################################
-# Argo Workflows
-- name: Transfer argo workflows config values file
-  template:
-    src: workflows-values.yml
-    dest: /tmp/workflows-values.yml
-    mode: 0644
-
-- name: Install argo workflows helm chart
-  kubernetes.core.helm:
-    release_name: argo-workflows
-    chart_ref: argo-workflows
-    chart_repo_url: https://argoproj.github.io/argo-helm
-    release_namespace: "{{argocd_namespace}}"
-    create_namespace: yes
-    wait: yes
-    values_files:
-      - /tmp/workflows-values.yml
-  become_user: "{{admin_user}}"    
-
-###################################################################################
-# Kargo
-#- name: Transfer Kargo config values file
-#  template:
-#    src: kargo-values.yml
-#    dest: /tmp/kargo-values.yml
-#    mode: 0644
-#
-#- name: Install Kargo helm chart
-#  kubernetes.core.helm:
-#    release_name: kargo
-#    chart_ref: oci://ghcr.io/akuity/kargo-charts/kargo
-#    release_namespace: "{{kargo_namespace}}"
-#    create_namespace: yes
-#    update_repo_cache: true
-#    wait: yes
-#    values_files:
-#      - /tmp/kargo-values.yml
-#  become_user: "{{admin_user}}"    
-
-###################################################################################
-# Notification templates and catalog
-- name: Download notification templates and catalog
-  ansible.builtin.get_url:
-    url: https://raw.githubusercontent.com/argoproj/argo-cd/stable/notifications_catalog/install.yaml
-    dest: /tmp/notifications_catalog.yaml
-    mode: '0664'
-    validate_certs: no
-
-- name: Install notifications catalog
-  kubernetes.core.k8s:
-    namespace: "{{argocd_namespace}}"
-    state: present
-    src: /tmp/notifications_catalog.yaml
-  become_user: "{{admin_user}}"
-
+- name: Install Argo Rollouts
+  ansible.builtin.import_tasks: rollouts.yml
+- name : Install ArgoCD Image Updater
+  ansible.builtin.import_tasks: imageupdater.yml
+- mame: Install Argo Workflows
+  ansible.builtin.import_tasks: workflows.yml
+#- name: Install kargo
+#  ansible.builtin.import_tasks: kargo.yml
+#- name: Install notifications
+#  ansible.builtin.import_tasks: notifications.yml

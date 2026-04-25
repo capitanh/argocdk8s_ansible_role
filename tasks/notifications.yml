@@ -1,0 +1,13 @@
+- name: Download notification templates and catalog
+  ansible.builtin.get_url:
+    url: https://raw.githubusercontent.com/argoproj/argo-cd/stable/notifications_catalog/install.yaml
+    dest: /tmp/notifications_catalog.yaml
+    mode: '0664'
+    validate_certs: no
+
+- name: Install notifications catalog
+  kubernetes.core.k8s:
+    namespace: "{{argocd_namespace}}"
+    state: present
+    src: /tmp/notifications_catalog.yaml
+  become_user: "{{admin_user}}"

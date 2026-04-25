@@ -1,0 +1,17 @@
+- name: Transfer Kargo config values file
+  template:
+    src: kargo-values.yml
+    dest: /tmp/kargo-values.yml
+    mode: 0644
+
+- name: Install Kargo helm chart
+  kubernetes.core.helm:
+    release_name: kargo
+    chart_ref: oci://ghcr.io/akuity/kargo-charts/kargo
+    release_namespace: "{{kargo_namespace}}"
+    create_namespace: yes
+    update_repo_cache: true
+    wait: yes
+    values_files:
+      - /tmp/kargo-values.yml
+  become_user: "{{admin_user}}"

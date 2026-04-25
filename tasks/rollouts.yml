@@ -1,0 +1,24 @@
+- name: Transfer argo rollouts config values file
+  template:
+    src: rollouts-values.yml
+    dest: /tmp/rollouts-values.yml
+    mode: 0644
+
+- name: Install argo rollouts helm chart
+  kubernetes.core.helm:
+    release_name: argo-rollouts
+    chart_ref: argo-rollouts
+    chart_repo_url: https://argoproj.github.io/argo-helm
+    release_namespace: "{{argorollouts_namespace}}"
+    create_namespace: yes
+    wait: yes
+    values_files:
+      - /tmp/rollouts-values.yml
+  become_user: "{{admin_user}}"
+
+- name: Download argo rollouts cli
+  ansible.builtin.get_url:
+    url: https://github.com/argoproj/argo-rollouts/releases/latest/download/kubectl-argo-rollouts-linux-amd64
+    dest: /usr/local/bin/kubectl-argo-rollouts-linux-amd64
+    mode: 0755
+    validate_certs: no

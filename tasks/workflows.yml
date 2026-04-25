@@ -1,0 +1,17 @@
+- name: Transfer argo workflows config values file
+  template:
+    src: workflows-values.yml
+    dest: /tmp/workflows-values.yml
+    mode: 0644
+
+- name: Install argo workflows helm chart
+  kubernetes.core.helm:
+    release_name: argo-workflows
+    chart_ref: argo-workflows
+    chart_repo_url: https://argoproj.github.io/argo-helm
+    release_namespace: "{{argocd_namespace}}"
+    create_namespace: yes
+    wait: yes
+    values_files:
+      - /tmp/workflows-values.yml
+  become_user: "{{admin_user}}"    

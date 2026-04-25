@@ -1,0 +1,17 @@
+- name: Transfer image updater config values file
+  template:
+    src: image-updater-values.yml
+    dest: /tmp/image-updater-values.yml
+    mode: 0644
+
+- name: Install argo image updater helm chart
+  kubernetes.core.helm:
+    release_name: argo
+    chart_ref: argocd-image-updater
+    chart_repo_url: https://argoproj.github.io/argo-helm
+    release_namespace: "{{argocd_namespace}}"
+    create_namespace: yes
+    wait: yes
+    values_files:
+      - /tmp/image-updater-values.yml
+  become_user: "{{admin_user}}"
