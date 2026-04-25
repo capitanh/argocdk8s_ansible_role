@@ -10,6 +10,7 @@ Requirements
 ------------
 A functioning microk8s installation. You can use the following role to boot up such a cluster:
 https://github.com/capitanh/microk8s_ansible_role
+There has to be a /tmp/argocd-values.yml file in the remote hosts (you should transfer it in a pre-tasks block in the playbook that runs this role) id you want to customize the setup or argocd will be installed with default values.
 
 Role Variables
 --------------
@@ -42,7 +43,14 @@ Register the role in requirements.yml:
 ```
 Include it in your playbooks:
 ```yaml
-    - hosts: servers
+    - name: ArgoCD playbook
+      hosts: servers
+      pre_tasks: 
+      - name: Transfer argocd server config values file
+        template:
+          src: argocd-values.yml
+          dest: /tmp/argocd-values.yml
+          mode: 0644
       roles:
       - argocd
 ```
