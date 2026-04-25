@@ -33,11 +33,16 @@
 
 - name: Install Argo Rollouts
   ansible.builtin.import_tasks: rollouts.yml
+  when: rollouts_enabled == true
 - name : Install ArgoCD Image Updater
   ansible.builtin.import_tasks: imageupdater.yml
+  when: imageupdater_enabled == true
 - name: Install Argo Workflows
   ansible.builtin.import_tasks: workflows.yml
-#- name: Install kargo
-#  ansible.builtin.import_tasks: kargo.yml
-#- name: Install notifications
-#  ansible.builtin.import_tasks: notifications.yml
+  when: workflows_enabled == true
+- name: Install kargo
+  ansible.builtin.import_tasks: kargo.yml
+  when: kargo_enabled == true
+- name: Install notifications
+  ansible.builtin.import_tasks: notifications.yml
+  when: notifications_enabled == true
